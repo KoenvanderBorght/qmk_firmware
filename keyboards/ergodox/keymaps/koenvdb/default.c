@@ -19,7 +19,7 @@ enum custom_keycodes {
 };
 
 //docker run -e keymap=koenvdb -e subproject=default -e keyboard=ergodox --rm -v C:/Users/KoenvanderBorghtGomo/Documents/dev/qmk:/qmk:rw edasque/qmk_firmware
-
+//http://configure.ergodox-ez.com/keyboard_layouts/qavodb/edit
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Basic layer
  * 
