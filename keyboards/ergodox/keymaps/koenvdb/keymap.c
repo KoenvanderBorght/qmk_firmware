@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *   | OSL4 | NTab | PTab | TL2 | MOML2 |                                       |  MOML1| TL1 |ALTSHIFTF|ALTF4| F12|
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        | TAB  | LCTL |       |  -   |   *  |
+ *                                        | TAB  |AltINS|       |  -   |   *  |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | LGUI |       |  +   |        |      |
  *                                 | Space|Backsp|------|       |------|  Tab   |Enter |
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           MO(3),                    KC_A,                  KC_S,             KC_D,               KC_F,                     KC_G,
           KC_LSHIFT,                CTL_T(KC_Z),           KC_X,             KC_C,               KC_V,                     KC_B,                    LCTL(KC_V), 
           OSL(4),                   LCTL(LSFT(KC_TAB)),    LCTL(KC_TAB),     TG(2),              MO(2), 
-                                                                             KC_TAB,             KC_LCTL, 
+                                                                             KC_TAB,             ALT_T(KC_INSERT), 
                                                                                                  KC_LGUI, 
                                                            CTL_T(KC_SPACE),  ALT_T(KC_BSPACE),   KC_LALT,   
 
