@@ -178,9 +178,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case PROGM: 
       if (record->event.pressed) {
         layer_on(_PROGM);
+        backlight_level(3);
+        backlight_toggle();
       }
       else { 
         layer_off(_PROGM);
+        backlight_toggle();
       }
     case LOWER:
       if (record->event.pressed) {
