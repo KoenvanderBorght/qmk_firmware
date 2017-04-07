@@ -177,7 +177,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case PROGM: 
       if (record->event.pressed) {
-        layer_on(_  	    );
+        layer_on(_PROGM);
         backlight_level(3);
         backlight_toggle();
       }
