@@ -44,7 +44,6 @@ enum planck_keycodes {
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 #define FORMATC M(0)
-#define PROGM M(1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -161,12 +160,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
             }
             break;
         }
-        case 1: {
-            if (record->event.pressed) {
-                return MACRO (MO(_PROGM));
-            }
-            break;
-        }
       }
     return MACRO_NONE;
 };
@@ -182,7 +175,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case LOWER:
+    case PROGM: 
+      if (record->event.pressed) {
+        layer_on(_  	    );
+        backlight_level(3);
+        backlight_toggle();
+      }
+      else { 
+        layer_off(_PROGM);
+        backlight_toggle();
+      }
+      return false;
+      break;
+      case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
