@@ -149,15 +149,13 @@ void persistant_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
 }
-//
-static uint16_t key_timer;
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
       switch(id) {
         case 0: {
             if (record->event.pressed) {
-                return MACRO (D(LCTL), T(K), U(LTCL), D(LCTL), T(D), U(LTCL), END); // if the key is being pressed, we start the timer.
+                return MACRO (D(LCTL), T(K), U(LCTL), D(LCTL), T(D), U(LCTL), END); // if the key is being pressed, we start the timer.
             }
             break;
         }
