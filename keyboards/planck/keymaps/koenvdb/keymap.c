@@ -179,7 +179,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_on(_PROGM);
       }
       else { 
-        layer_off(_PROGM)
+        layer_off(_PROGM);
       }
     case LOWER:
       if (record->event.pressed) {
