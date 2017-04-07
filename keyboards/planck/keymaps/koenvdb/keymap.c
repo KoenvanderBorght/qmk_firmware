@@ -25,6 +25,7 @@ enum planck_layers {
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
+  PROGM,
   LOWER,
   RAISE,
   BACKLIT
