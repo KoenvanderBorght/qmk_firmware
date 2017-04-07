@@ -44,6 +44,7 @@ enum planck_keycodes {
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 #define FORMATC M(0)
+#define PROGM M(1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -62,12 +63,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC},
   {PROGM,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT},
   {KC_LSFT, CTRLZ,   KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT},
-  {KC_LCTL, KC_LGUI, KC_LALT, TG(LOWER), LOWER,   KC_SPC,  KC_SPC,  RAISE,   NEWD,    CLOSED,  BACKD,   NEXTD}
+  {KC_LCTL, KC_LALT, KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   NEWD,    CLOSED,  BACKD,   NEXTD}
 },
 /* PROGM
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   @  |   (  |   )  |   #  |  Del |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |------+------+------+------+`````  ---------+------+------+------+------+------|
  * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   =  |   {  |   }  |   $  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   -  |   [  |   ]  | Play | Next |
@@ -85,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   @  |   (  |   )  |   #  |  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   =  |   {  |   }  |   $  |  |   |
+ * | Del  |  F1  |  F2  |  F3 |  F4  |  F5  |  F6  |   =  |   {  |   }  |   $  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   -  |   [  |   ]  | Play | Next |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -102,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   `  |   1  | M_UP |   3  |   4  |   5  |   6  |   7  |SCRLUP| PREV  | NEXT |VOLUP|
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | PRGM  |M_LEFT|M_DOWN|M_RIGH|  F4  |  F5  |  F6  |SCRLLE|SCRLDN|SCRLRI|   ]  |VOLDN|
+ * | PRGM  |M_LEFT|M_DOWN|M_RIGH|  F4  |  F5  |  F6  |SCRLLE|SCRLDN|SCRLRI|   ]  |VOLD{N|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn | MUTE |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -160,6 +161,12 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
             }
             break;
         }
+        case 1: {
+            if (record->event.pressed) {
+                return MACRO (MO(_PROGM));
+            }
+            break;
+        }
       }
     return MACRO_NONE;
 };
@@ -175,16 +182,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case PROGM: 
-      if (record->event.pressed) {
-        layer_on(_PROGM);
-        backlight_level(3);
-        backlight_toggle();
-      }
-      else { 
-        layer_off(_PROGM);
-        backlight_toggle();
-      }
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
