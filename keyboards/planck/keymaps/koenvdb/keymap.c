@@ -25,7 +25,6 @@ enum planck_layers {
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
-  PROGM,
   LOWER,
   RAISE,
   BACKLIT
@@ -60,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = {
   {KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC},
-  {PROGM,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT},
+  {MO(_PROGM),  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT},
   {KC_LSFT, CTRLZ,   KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT},
   {KC_LCTL, KC_LALT, KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   NEWD,    CLOSED,  BACKD,   NEXTD}
 },
@@ -77,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_PROGM] = {
   {KC_GRV, LALT(LSFT(KC_F)), LALT(KC_ENT),   FORMATC, LCTL(KC_Z), LCTL(KC_C), LCTL(KC_V), KC_AMPR,    KC_ASTR,    KC_LPRN, KC_RPRN, KC_DEL},
-  {KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_PLUS,    KC_LCBR,    KC_RCBR, KC_RCBR, KC_PIPE},
+  {_______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_PLUS,    KC_LCBR,    KC_RCBR, KC_RCBR, KC_PIPE},
   {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  S(KC_NUHS), KC_LBRC,    KC_RBRC, KC_MPLY, KC_MNXT},
   {_______, _______, _______, _______, _______, _______, _______, _______,    PRINTSC,    KC_VOLD, KC_VOLU, KC_MPRV}
 },
@@ -172,18 +171,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           PLAY_NOTE_ARRAY(tone_qwerty, false, 0);
         #endif
         persistant_default_layer_set(1UL<<_QWERTY);
-      }
-      return false;
-      break;
-    case PROGM: 
-      if (record->event.pressed) {
-        layer_on(_PROGM);
-        backlight_level(3);
-        backlight_toggle();
-      }
-      else { 
-        layer_off(_PROGM);
-        backlight_toggle();
       }
       return false;
       break;
