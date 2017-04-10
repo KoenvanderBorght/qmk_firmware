@@ -50,7 +50,10 @@ enum {
   TD_NEXT_PREV,
   TD_MINS_UNDS,
   TD_LCBR_LBRC,
-  TD_RCBR_RBRC
+  TD_RCBR_RBRC,
+  TD_1_EXCL,
+  TD__AT,
+  TD_
 };
 
 
@@ -111,16 +114,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   `  |   1  | M_UP |   3  |   4  |   5  |   6  |   7  |SCRLUP| PREV  | NEXT |VOLUP|
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | PRGM  |M_LEFT|M_DOWN|M_RIGH|  F4  |  F5  |  F6  |SCRLLE|SCRLDN|SCRLRI|   ]  |VOLD{N|
+ * | PRGM  |M_LEFT|M_DOWN|M_RIGH|  F4  |LEFTM|RIGHTM|SCRLLE|SCRLDN|SCRLRI|   ]  |VOLD{N|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |Pg Up |Pg Dn | MUTE |
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO /- |Pg Up |Pg Dn | MUTE |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | TLRAIS |ALTSHIFTF| Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = {
   {KC_ESC,  KC_1,    KC_MS_UP,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_MS_WH_UP, KC_MPRV,   KC_MNXT,  KC_VOLU},
-  {KC_DEL,  KC_MS_LEFT,   KC_MS_DOWN,   KC_MS_RIGHT,   KC_F4,   KC_F5,   KC_F6,   KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_RIGHT, KC_RBRC, KC_VOLD},
+  {KC_DEL,  KC_MS_LEFT,   KC_MS_DOWN,   KC_MS_RIGHT,   KC_F4,   KC_MS_BTN1,   KC_MS_BTN2,   KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_RIGHT, KC_RBRC, KC_VOLD},
   {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  ACCEL0,  ACCEL1,  ACCEL2, KC_PGDN, KC_MUTE},
   {_______, _______, _______, _______, _______, _______, _______, _______, TG(_RAISE), _______, LALT(KC_F4), KC_MPLY}
 },
