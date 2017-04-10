@@ -97,8 +97,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_PROGM] = {
   {KC_GRV,  TD(TD_1_EXCL),    TD(TD_2_AT),    TD(TD_3_HAS),    TD(TD_4_DLR),    TD(TD_5_PRC),    TD(TD_6_CIR),    TD(TD_7_AMPR),    TD(TD_8_ASTR),    TD(TD_9_LPRN),    KC_DEL},
-  {_______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    KC_LPRN,    KC_RPRN, KC_DLR, KC_PIPE},
-  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_MINS_UNDS), TD(TD_LCBR_LBRC),    TD(TD_RCBR_RBRC), KC_MPLY, TD(TD_NEXT_PREV)},
+  {_______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    TD(TD_LCBR_LBRC),    TD(TD_RCBR_RBRC), KC_DLR, KC_PIPE},
+  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_MINS_UNDS), _______, _______, KC_MPLY, TD(TD_NEXT_PREV)},
   {_______, _______, _______, _______, KC_LSFT, _______, _______, TD(TD_COPY_PASTE),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
 },
 /* Lower
