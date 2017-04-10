@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * | PROGM|   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -65,30 +65,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 },
 /* PROGM
  * ,-----------------------------------------------------------------------------------.
- * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   @  |   (  |   )  |   #  |  Del |
+ * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |  Del |
  * |------+------+------+------+`````  ---------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   =  |   {  |   }  |   $  |  |   |
+ * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   =  |   (  |   )  |   $  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   -  |   [  |   ]  | Play | Next |
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   -  |   {  |   }  | Play | Next |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | PSCN | Vol- | Vol+ | Prev |
+ * |      |      |      |      |      |             |      |  [  |   ]  | Vol+ | Prev |
  * `-----------------------------------------------------------------------------------'
  */
 [_PROGM] = {
   {KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL},
-  {_______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    KC_LCBR,    KC_RCBR, KC_DLR, KC_PIPE},
-  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_MINS, KC_LBRC,    KC_RBRC, KC_MPLY, KC_MNXT},
-  {_______, _______, _______, _______, KC_LSFT, _______, _______, _______,    PRINTSC,    KC_VOLD, KC_VOLU, KC_MPRV}
+  {_______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    KC_LPRN,    KC_RPRN, KC_DLR, KC_PIPE},
+  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_MINS_UNDS), TD(TD_LCBR_LBRC),    TD(TD_RCBR_RBRC), KC_MPLY, TD(TD_NEXT_PREV)},
+  {_______, _______, _______, _______, KC_LSFT, _______, _______, _______,    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
 },
 /* Lower
  * ,-----------------------------------------------------------------------------------.
- * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   @  |   (  |   )  |   #  |  Del |
+ * |   ~  |ALTSHTF|ALTENT|FORMATVS|UNDO|COPY|INSERT|HOME|UP|END|   #  |  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3 |  F4  |  F5  |  F6  |   =  |   {  |   }  |   $  |  |   |
+ * | Del  |      |      |     |      |      |  END  | LEFT | DOWN | RGHT|   $  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   -  |   [  |   ]  | Play | Next |
+ * |      |      |      |      |       |      |ALTPSCR|PGUP|      |PGDN|        |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | PSCN | Vol- | Vol+ | Prev |
+ * |      |      |      |      |      |             |      |      |      |      |     |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = {
@@ -161,6 +161,27 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         }
       }
     return MACRO_NONE;
+};
+
+//Tap Dance Declarations
+enum {
+  TD_ESC_CAPS = 0,
+  TD_MINS_UNDS,
+  TD_LCBR_LBRC,
+  TD_RCBR_RBRC
+};
+
+//Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+  //Tap once for Next, twice for Previous
+  [TD_NEXT_PREV]  = ACTION_TAP_DANCE_DOUBLE(KC_MNXT, KC_MPRV),
+  //Tap once for -, twice for _
+  [TD_MINS_UNDS]  = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_UNDS),
+  //Tap once for {, twice for [
+  [TD_LCBR_LBRC]  = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_LBRC),
+  //Tap once for }, twice for ]
+  [TD_RCBR_RBRC]  = ACTION_TAP_DANCE_DOUBLE(KC_RCBR, KC_RBRC)
+// Other declarations would go here, separated by commas, if you have them
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
