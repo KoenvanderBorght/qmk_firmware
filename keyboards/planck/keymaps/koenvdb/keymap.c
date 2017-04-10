@@ -48,6 +48,7 @@ enum planck_keycodes {
 //Tap Dance Declarations
 enum {
   TD_ESC_CAPS = 0,
+  TD_NEXT_PREV,
   TD_MINS_UNDS,
   TD_LCBR_LBRC,
   TD_RCBR_RBRC
