@@ -52,8 +52,16 @@ enum {
   TD_LCBR_LBRC,
   TD_RCBR_RBRC,
   TD_1_EXCL,
-  TD__AT,
-  TD_
+  TD_2_AT,
+  TD_3_HAS,
+  TD_4_DLR,
+  TD_5_PRC,
+  TD_6_CIR,
+  TD_7_AMPR,
+  TD_8_ASTR,
+  TD_9_LPRN,
+  TD_0_RPRN,
+  TD_COPY_PASTE
 };
 
 
@@ -88,10 +96,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_PROGM] = {
-  {KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL},
+  {KC_GRV,  TD(TD_1_EXCL),    TD(TD_2_AT),    TD(TD_3_HAS),    TD(TD_4_DLR),    TD(TD_5_PRC),    TD(TD_6_CIR),    TD(TD_7_AMPR),    TD(TD_8_ASTR),    TD(TD_9_LPRN),    KC_DEL},
   {_______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    KC_LPRN,    KC_RPRN, KC_DLR, KC_PIPE},
   {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_MINS_UNDS), TD(TD_LCBR_LBRC),    TD(TD_RCBR_RBRC), KC_MPLY, TD(TD_NEXT_PREV)},
-  {_______, _______, _______, _______, KC_LSFT, _______, _______, _______,    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
+  {_______, _______, _______, _______, KC_LSFT, _______, _______, TD(TD_COPY_PASTE),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
 },
 /* Lower
  * ,-----------------------------------------------------------------------------------.
@@ -185,8 +193,31 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for {, twice for [
   [TD_LCBR_LBRC]  = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_LBRC),
   //Tap once for }, twice for ]
-  [TD_RCBR_RBRC]  = ACTION_TAP_DANCE_DOUBLE(KC_RCBR, KC_RBRC)
-// Other declarations would go here, separated by commas, if you have them
+  [TD_RCBR_RBRC]  = ACTION_TAP_DANCE_DOUBLE(KC_RCBR, KC_RBRC),
+  //Tap once for 1, twice for !
+  [TD_1_EXCL] = ACTION_TAP_DANCE_DOUBLE(KC_1, KC_EXLM),
+  //Tap once for 2, twice for @
+  [TD_2_AT] = ACTION_TAP_DANCE_DOUBLE(KC_2, KC_AT),
+  //Tap once for 3, twice for #
+  [TD_3_HAS] = ACTION_TAP_DANCE_DOUBLE(KC_3, KC_HASH),
+  //Tap once for 4, twice for $
+  [TD_4_DLR] = ACTION_TAP_DANCE_DOUBLE(KC_4, KC_DLR),
+  //Tap once for 5, twice for %
+  [TD_5_PRC] = ACTION_TAP_DANCE_DOUBLE(KC_5, KC_PERC),
+  //Tap once for 6, twice for ^
+  [TD_6_CIR] = ACTION_TAP_DANCE_DOUBLE(KC_6, KC_CIRC),
+  //Tap once for 7, twice for 
+  [TD_7_AMPR] = ACTION_TAP_DANCE_DOUBLE(KC_7, KC_AMPR),
+  //Tap once for 8, twice for * 
+  [TD_8_ASTR] = ACTION_TAP_DANCE_DOUBLE(KC_8, KC_ASTR),
+  //Tap once for 9, twice for (
+  [TD_9_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_9, KC_LPRN),
+  //Tap once for 0, twice for ) 
+  [TD_0_RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_RPRN),
+  //Tap once for copy, twice for paste
+  [TD_COPY_PASTE] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_C), LCTL(KC_V))
+  
+  // Other declarations would go here, separated by commas, if you have them
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
