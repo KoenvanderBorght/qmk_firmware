@@ -6,7 +6,7 @@
 #include "../../config.h"
 
 /* Tapping settings */
-#define TAPPING_TERM 100
+#define TAPPING_TERM 150
 
 /* Mouse settings */
 #define MOUSEKEY_INTERVAL 20
