@@ -44,6 +44,16 @@ enum planck_keycodes {
 #define XXXXXXX KC_NO
 #define FORMATC M(0)
 
+
+//Tap Dance Declarations
+enum {
+  TD_ESC_CAPS = 0,
+  TD_MINS_UNDS,
+  TD_LCBR_LBRC,
+  TD_RCBR_RBRC
+};
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -161,14 +171,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
         }
       }
     return MACRO_NONE;
-};
-
-//Tap Dance Declarations
-enum {
-  TD_ESC_CAPS = 0,
-  TD_MINS_UNDS,
-  TD_LCBR_LBRC,
-  TD_RCBR_RBRC
 };
 
 //Tap Dance Definitions
