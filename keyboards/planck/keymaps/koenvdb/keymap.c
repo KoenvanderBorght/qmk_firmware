@@ -39,7 +39,7 @@ enum planck_keycodes {
 #define CLOSED LCTL(LGUI(KC_F4))
 #define BACKD LCTL(LGUI(KC_LEFT))
 #define NEXTD LCTL(LGUI(KC_RGHT))
-#define _______ KC_TRNS
+#define _ KC_TRNS
 #define XXXXXXX KC_NO
 #define FORMATC M(0)
 
@@ -97,9 +97,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_PROGM] = {
   {KC_GRV,  TD(TD_1_EXCL),    TD(TD_2_AT),    TD(TD_3_HAS),    TD(TD_4_DLR),    TD(TD_5_PRC),    TD(TD_6_CIR),    TD(TD_7_AMPR),    TD(TD_8_ASTR),    TD(TD_9_LPRN), TD(TD_0_RPRN),    KC_DEL},
-  {_______,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    TD(TD_LCBR_LBRC),    TD(TD_RCBR_RBRC), KC_DLR, KC_PIPE},
-  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_MINS_UNDS), _______, _______, KC_MPLY, TD(TD_NEXT_PREV)},
-  {_______, _______, _______, _______, KC_LSFT, _______, _______, TD(TD_COPY_PASTE),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
+  {_,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    TD(TD_LCBR_LBRC),    TD(TD_RCBR_RBRC), KC_DLR, KC_PIPE},
+  {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_MINS_UNDS), _, _, KC_MPLY, TD(TD_NEXT_PREV)},
+  {_, _, _, _, KC_LSFT, _, _, TD(TD_COPY_PASTE),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
 },
 /* Lower
  * ,-----------------------------------------------------------------------------------.
@@ -113,10 +113,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = {
-  {KC_ESC,   LALT(LSFT(KC_F)), LALT(KC_ENT),   FORMATC, LCTL(KC_Z), LCTL(KC_C), KC_INS,  KC_HOME, KC_UP,   KC_END,   _______,      _______},
-  {_______, _______, _______, _______, _______, _______, KC_END,  KC_LEFT, KC_DOWN, KC_RGHT,  _______, _______},
-  {_______, _______, _______, _______, _______, _______, LALT(KC_PSCR), KC_PGUP, _______, KC_PGDN, _______, _______},
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
+  {KC_ESC,   LALT(LSFT(KC_F)), LALT(KC_ENT),   FORMATC, LCTL(KC_Z), LCTL(KC_C), KC_INS,  KC_HOME, KC_UP,   KC_END,   _,      _},
+  {_, _, _, _, _, _, KC_END,  KC_LEFT, KC_DOWN, KC_RGHT,  _, _},
+  {_, _, _, _, _, _, LALT(KC_PSCR), KC_PGUP, _, KC_PGDN, _, _},
+  {_, _, _, _, _, _, _, _, _, _, _, _}
 },
 /* Raise
  * ,-----------------------------------------------------------------------------------.
@@ -132,8 +132,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = {
   {KC_ESC,  KC_1,    KC_MS_UP,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_MS_WH_UP, KC_MPRV,   KC_MNXT,  KC_VOLU},
   {KC_DEL,  KC_MS_LEFT,   KC_MS_DOWN,   KC_MS_RIGHT,   KC_F4,   KC_MS_BTN1,   KC_MS_BTN2,   KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_RIGHT, KC_RBRC, KC_VOLD},
-  {_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  ACCEL0,  ACCEL1,  ACCEL2, KC_PGDN, KC_MUTE},
-  {_______, _______, _______, _______, _______, _______, _______, _______, TG(_RAISE), _______, LALT(KC_F4), KC_MPLY}
+  {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  ACCEL0,  ACCEL1,  ACCEL2, KC_PGDN, KC_MUTE},
+  {_, _, _, _, _, _, _, _, TG(_RAISE), _, LALT(KC_F4), KC_MPLY}
 },
 
 /* Adjust (Lower + Raise)
@@ -148,10 +148,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
-  {_______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL },
-  {_______, _______, _______, AU_ON,   AU_OFF,  _______, _______, _______, _______, _______, _______, _______},
-  {_______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______},
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
+  {_, RESET,   _, _, _, _, _, _, _, _, _, KC_DEL },
+  {_, _, _, AU_ON,   AU_OFF,  _, _, _, _, _, _, _},
+  {_, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _, _, _, _, _},
+  {_, _, _, _, _, _, _, _, _, _, _, _}
 }
 
 
