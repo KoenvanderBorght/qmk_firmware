@@ -149,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = {
   {_, RESET,   _, _, _, _, _, _, _, _, _, KC_DEL },
-  {_, _, _, AU_ON,   AU_OFF,  _, _, _, _, _, _, _},
+  {_, _, _, AU_ON,   AU_OFF,  _, _, _, _, _, _, QWERTY},
   {_, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _, _, _, _, _},
   {_, _, _, _, _, _, _, _, _, _, _, _}
 }
