@@ -236,7 +236,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for 0, twice for ) 
   [TD_0_R] = ATDD(KC_0, KC_RPRN),
   //Tap once for copy, twice for paste
-  [TD_C_P] = ATDD(LCTL(KC_C), LCTL(KC_V))
+  [TD_C_P] = ATDD(LCTL(KC_C), LCTL(KC_V)),
   //Tap once for =, twice for +
   [TD_E_P] = ATDD(KC_EQL, KC_PLUS);
   
@@ -257,11 +257,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
-        backlight_level(2);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_LOWER);
-        backlight_level(0);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
@@ -280,11 +278,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
-        backlight_level(1);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_RAISE);
-        backlight_level(0);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
