@@ -252,21 +252,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
+        backlight_level(2);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_LOWER);
+        backlight_level(0);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case PROGM:
+      if (record->event.pressed) {
+        backlight_toggle();
+      }
+      else {
+        backlight_toggle();
       }
       return false;
       break;
     case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
-        backlight_toggle();
+        backlight_level(1);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_RAISE);
-        backlight_toggle();
+        backlight_level(0);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
@@ -297,15 +308,15 @@ void matrix_init_user(void) {
 void startup_user()
 {
     _delay_ms(20); // gets rid of tick
-    PLAY_NOTE_ARRAY(tone_startup, false, 0);
+    //PLAY_NOTE_ARRAY(tone_startup, false, 0);
     //PLAY_NOTE_ARRAY(tone_ode, false, 0);    
 }
 
 void shutdown_user()
 {
-    PLAY_NOTE_ARRAY(tone_goodbye, false, 0);
-    _delay_ms(150);
-    stop_all_notes();
+    //PLAY_NOTE_ARRAY(tone_goodbye, false, 0);
+    //_delay_ms(150);
+   // stop_all_notes();
 }
 
 void music_on_user(void)
