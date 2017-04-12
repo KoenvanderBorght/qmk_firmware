@@ -301,7 +301,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void matrix_init_user(void) {
-  backlight_level(0);
     #ifdef AUDIO_ENABLE
         startup_user();
     #endif
