@@ -39,6 +39,7 @@ enum planck_keycodes {
 #define CLOSED LCTL(LGUI(KC_F4))
 #define BACKD LCTL(LGUI(KC_LEFT))
 #define NEXTD LCTL(LGUI(KC_RGHT))
+#define ATDD ACTION_TAP_DANCE_DOUBLE
 #define _ KC_TRNS
 #define XXXXXXX KC_NO
 #define FORMATC M(0)
@@ -204,35 +205,35 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for Next, twice for Previous
-  [TD_N_P]  = ACTION_TAP_DANCE_DOUBLE(KC_MNXT, KC_MPRV),
+  [TD_N_P]  = ATDD(KC_MNXT, KC_MPRV),
   //Tap once for -, twice for _
-  [TD_M_U]  = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_UNDS),
+  [TD_M_U]  = ATDD(KC_MINS, KC_UNDS),
   //Tap once for {, twice for [
-  [TD_LC_LB]  = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_LBRC),
+  [TD_LC_LB]  = ATDD(KC_LCBR, KC_LBRC),
   //Tap once for }, twice for ]
-  [TD_RC_RB]  = ACTION_TAP_DANCE_DOUBLE(KC_RCBR, KC_RBRC),
+  [TD_RC_RB]  = ATDD(KC_RCBR, KC_RBRC),
   //Tap once for 1, twice for !
-  [TD_1_E] = ACTION_TAP_DANCE_DOUBLE(KC_1, KC_EXLM),
+  [TD_1_E] = ATDD(KC_1, KC_EXLM),
   //Tap once for 2, twice for @
-  [TD_2_A] = ACTION_TAP_DANCE_DOUBLE(KC_2, KC_AT),
+  [TD_2_A] = ATDD(KC_2, KC_AT),
   //Tap once for 3, twice for #
-  [TD_3_H] = ACTION_TAP_DANCE_DOUBLE(KC_3, KC_HASH),
+  [TD_3_H] = ATDD(KC_3, KC_HASH),
   //Tap once for 4, twice for $
-  [TD_4_D] = ACTION_TAP_DANCE_DOUBLE(KC_4, KC_DLR),
+  [TD_4_D] = ATDD(KC_4, KC_DLR),
   //Tap once for 5, twice for %
-  [TD_5_P] = ACTION_TAP_DANCE_DOUBLE(KC_5, KC_PERC),
+  [TD_5_P] = ATDD(KC_5, KC_PERC),
   //Tap once for 6, twice for ^
-  [TD_6_C] = ACTION_TAP_DANCE_DOUBLE(KC_6, KC_CIRC),
+  [TD_6_C] = ATDD(KC_6, KC_CIRC),
   //Tap once for 7, twice for 
-  [TD_7_A] = ACTION_TAP_DANCE_DOUBLE(KC_7, KC_AMPR),
+  [TD_7_A] = ATDD(KC_7, KC_AMPR),
   //Tap once for 8, twice for * 
-  [TD_8_A] = ACTION_TAP_DANCE_DOUBLE(KC_8, KC_ASTR),
+  [TD_8_A] = ATDD(KC_8, KC_ASTR),
   //Tap once for 9, twice for (
-  [TD_9_L] = ACTION_TAP_DANCE_DOUBLE(KC_9, KC_LPRN),
+  [TD_9_L] = ATDD(KC_9, KC_LPRN),
   //Tap once for 0, twice for ) 
-  [TD_0_R] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_RPRN),
+  [TD_0_R] = ATDD(KC_0, KC_RPRN),
   //Tap once for copy, twice for paste
-  [TD_C_P] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_C), LCTL(KC_V))
+  [TD_C_P] = ATDD(LCTL(KC_C), LCTL(KC_V))
   
   // Other declarations would go here, separated by commas, if you have them
 };
