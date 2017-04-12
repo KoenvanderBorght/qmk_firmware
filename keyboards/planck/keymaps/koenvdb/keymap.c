@@ -46,22 +46,38 @@ enum planck_keycodes {
 
 //Tap Dance Declarations
 enum {
-  TD_ESC_CAPS = 0,
-  TD_NEXT_PREV,
-  TD_MINS_UNDS,
-  TD_LCBR_LBRC,
-  TD_RCBR_RBRC,
-  TD_1_EXCL,
-  TD_2_AT,
-  TD_3_HAS,
-  TD_4_DLR,
-  TD_5_PRC,
-  TD_6_CIR,
-  TD_7_AMPR,
-  TD_8_ASTR,
-  TD_9_LPRN,
-  TD_0_RPRN,
-  TD_COPY_PASTE
+  //Esc, Caps
+  TD_E_C = 0,
+  //Next, Prev
+  TD_N_P,
+  //MINS, UNDS
+  TD_M_U,
+  //LCBR, LBRC
+  TD_LC_LB,
+  //RCBR, RBRC
+  TD_RC_RB,
+  //1, EXCL
+  TD_1_E,
+  //2, AT
+  TD_2_A,
+  //3, HSH
+  TD_3_H,
+  //4, DLR
+  TD_4_D,
+  //5, PRC
+  TD_5_P,
+  //6, CIR
+  TD_6_C,
+  //7, AMPR
+  TD_7_A,
+  //8, ASTR
+  TD_8_A,
+  //9, LPRN
+  TD_9_L,
+  //0, RPRN
+  TD_0_R,
+  //Copy, Paste
+  TD_C_P
 };
 
 
@@ -96,10 +112,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_PROGM] = {
-  {KC_GRV,  TD(TD_1_EXCL),    TD(TD_2_AT),    TD(TD_3_HAS),    TD(TD_4_DLR),    TD(TD_5_PRC),    TD(TD_6_CIR),    TD(TD_7_AMPR),    TD(TD_8_ASTR),    TD(TD_9_LPRN), TD(TD_0_RPRN),    KC_DEL},
-  {_,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    TD(TD_LCBR_LBRC),    TD(TD_RCBR_RBRC), KC_DLR, KC_PIPE},
-  {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_MINS_UNDS), _, _, KC_MPLY, TD(TD_NEXT_PREV)},
-  {_, _, _, _, KC_LSFT, _, _, TD(TD_COPY_PASTE),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
+  {KC_GRV,  TD(TD_1_E),    TD(TD_2_A),    TD(TD_3_H),    TD(TD_4_D),    TD(TD_5_P),    TD(TD_6_C),    TD(TD_7_A),    TD(TD_8_A),    TD(TD_9_L), TD(TD_0_R),    KC_DEL},
+  {_,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    TD(TD_LC_LB),    TD(TD_RC_RB), KC_DLR, KC_PIPE},
+  {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_M_U), _, _, KC_MPLY, TD(TD_N_P)},
+  {_, _, _, _, KC_LSFT, _, _, TD(TD_C_P),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
 },
 /* Lower
  * ,-----------------------------------------------------------------------------------.
@@ -188,35 +204,35 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for Next, twice for Previous
-  [TD_NEXT_PREV]  = ACTION_TAP_DANCE_DOUBLE(KC_MNXT, KC_MPRV),
+  [TD_N_P]  = ACTION_TAP_DANCE_DOUBLE(KC_MNXT, KC_MPRV),
   //Tap once for -, twice for _
-  [TD_MINS_UNDS]  = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_UNDS),
+  [TD_M_U]  = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_UNDS),
   //Tap once for {, twice for [
-  [TD_LCBR_LBRC]  = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_LBRC),
+  [TD_LC_LB]  = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_LBRC),
   //Tap once for }, twice for ]
-  [TD_RCBR_RBRC]  = ACTION_TAP_DANCE_DOUBLE(KC_RCBR, KC_RBRC),
+  [TD_RC_RB]  = ACTION_TAP_DANCE_DOUBLE(KC_RCBR, KC_RBRC),
   //Tap once for 1, twice for !
-  [TD_1_EXCL] = ACTION_TAP_DANCE_DOUBLE(KC_1, KC_EXLM),
+  [TD_1_E] = ACTION_TAP_DANCE_DOUBLE(KC_1, KC_EXLM),
   //Tap once for 2, twice for @
-  [TD_2_AT] = ACTION_TAP_DANCE_DOUBLE(KC_2, KC_AT),
+  [TD_2_A] = ACTION_TAP_DANCE_DOUBLE(KC_2, KC_AT),
   //Tap once for 3, twice for #
-  [TD_3_HAS] = ACTION_TAP_DANCE_DOUBLE(KC_3, KC_HASH),
+  [TD_3_H] = ACTION_TAP_DANCE_DOUBLE(KC_3, KC_HASH),
   //Tap once for 4, twice for $
-  [TD_4_DLR] = ACTION_TAP_DANCE_DOUBLE(KC_4, KC_DLR),
+  [TD_4_D] = ACTION_TAP_DANCE_DOUBLE(KC_4, KC_DLR),
   //Tap once for 5, twice for %
-  [TD_5_PRC] = ACTION_TAP_DANCE_DOUBLE(KC_5, KC_PERC),
+  [TD_5_P] = ACTION_TAP_DANCE_DOUBLE(KC_5, KC_PERC),
   //Tap once for 6, twice for ^
-  [TD_6_CIR] = ACTION_TAP_DANCE_DOUBLE(KC_6, KC_CIRC),
+  [TD_6_C] = ACTION_TAP_DANCE_DOUBLE(KC_6, KC_CIRC),
   //Tap once for 7, twice for 
-  [TD_7_AMPR] = ACTION_TAP_DANCE_DOUBLE(KC_7, KC_AMPR),
+  [TD_7_A] = ACTION_TAP_DANCE_DOUBLE(KC_7, KC_AMPR),
   //Tap once for 8, twice for * 
-  [TD_8_ASTR] = ACTION_TAP_DANCE_DOUBLE(KC_8, KC_ASTR),
+  [TD_8_A] = ACTION_TAP_DANCE_DOUBLE(KC_8, KC_ASTR),
   //Tap once for 9, twice for (
-  [TD_9_LPRN] = ACTION_TAP_DANCE_DOUBLE(KC_9, KC_LPRN),
+  [TD_9_L] = ACTION_TAP_DANCE_DOUBLE(KC_9, KC_LPRN),
   //Tap once for 0, twice for ) 
-  [TD_0_RPRN] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_RPRN),
+  [TD_0_R] = ACTION_TAP_DANCE_DOUBLE(KC_0, KC_RPRN),
   //Tap once for copy, twice for paste
-  [TD_COPY_PASTE] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_C), LCTL(KC_V))
+  [TD_C_P] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_C), LCTL(KC_V))
   
   // Other declarations would go here, separated by commas, if you have them
 };
@@ -245,9 +261,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
+        backlight_toggle();
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
         layer_off(_RAISE);
+        backlight_toggle();
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
@@ -278,8 +296,8 @@ void matrix_init_user(void) {
 void startup_user()
 {
     _delay_ms(20); // gets rid of tick
-    //PLAY_NOTE_ARRAY(tone_startup, false, 0);
-    PLAY_NOTE_ARRAY(tone_ode, false, 0);    
+    PLAY_NOTE_ARRAY(tone_startup, false, 0);
+    //PLAY_NOTE_ARRAY(tone_ode, false, 0);    
 }
 
 void shutdown_user()
