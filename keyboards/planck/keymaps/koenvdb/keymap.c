@@ -80,6 +80,8 @@ enum {
   TD_0_R,
   //Copy, Paste
   TD_C_P
+  //Equal, Plus
+  TD_E_P
 };
 
 
@@ -115,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_PROGM] = {
   {KC_GRV,  TD(TD_1_E),    TD(TD_2_A),    TD(TD_3_H),    TD(TD_4_D),    TD(TD_5_P),    TD(TD_6_C),    TD(TD_7_A),    TD(TD_8_A),    TD(TD_9_L), TD(TD_0_R),    KC_DEL},
-  {_,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_EQL,    TD(TD_LC_LB),    TD(TD_RC_RB), KC_DLR, KC_PIPE},
+  {_,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   TD(TD_E_P),    TD(TD_LC_LB),    TD(TD_RC_RB), KC_DLR, KC_PIPE},
   {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_M_U), _, _, KC_MPLY, TD(TD_N_P)},
   {_, _, _, _, KC_LSFT, _, _, TD(TD_C_P),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
 },
@@ -235,6 +237,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_0_R] = ATDD(KC_0, KC_RPRN),
   //Tap once for copy, twice for paste
   [TD_C_P] = ATDD(LCTL(KC_C), LCTL(KC_V))
+  //Tap once for =, twice for +
+  [TD_E_P] = ATDD(KC_EQL, KC_PLUS);
   
   // Other declarations would go here, separated by commas, if you have them
 };
