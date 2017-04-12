@@ -79,7 +79,7 @@ enum {
   //0, RPRN
   TD_0_R,
   //Copy, Paste
-  TD_C_P
+  TD_C_P,
   //Equal, Plus
   TD_E_P
 };
@@ -238,7 +238,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for copy, twice for paste
   [TD_C_P] = ATDD(LCTL(KC_C), LCTL(KC_V)),
   //Tap once for =, twice for +
-  [TD_E_P] = ATDD(KC_EQL, KC_PLUS);
+  [TD_E_P] = ATDD(KC_EQL, KC_PLUS)
   
   // Other declarations would go here, separated by commas, if you have them
 };
