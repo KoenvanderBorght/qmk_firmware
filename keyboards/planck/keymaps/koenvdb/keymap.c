@@ -267,9 +267,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case PROGM:
       if (record->event.pressed) {
         layer_on(_PROGM);
+        backlight_toggle(3);
       }
       else {
         layer_off(_PROGM);
+        backlight_toggle(0);
       }
       return false;
       break;
@@ -299,6 +301,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void matrix_init_user(void) {
+  backlight_level(0);
     #ifdef AUDIO_ENABLE
         startup_user();
     #endif
