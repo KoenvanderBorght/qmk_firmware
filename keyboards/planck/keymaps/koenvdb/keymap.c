@@ -180,6 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef AUDIO_ENABLE
 
 float tone_startup[][2]    = SONG(STARTUP_SOUND);
+float tone_give_you_up[][2]= SONG(GIVE_YOU_UP);
 float tone_ode[][2]        = SONG(ODE_TO_JOY);
 float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
 float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
@@ -311,6 +312,7 @@ void startup_user()
     _delay_ms(20); // gets rid of tick
     //PLAY_NOTE_ARRAY(tone_startup, false, 0);
     //PLAY_NOTE_ARRAY(tone_ode, false, 0);    
+    PLAY_NOTE_ARRAY(tone_give_you_up, false, 0);
 }
 
 void shutdown_user()
