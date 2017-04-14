@@ -81,7 +81,11 @@ enum {
   //Copy, Paste
   TD_C_P,
   //Equal, Plus
-  TD_E_P
+  TD_E_P,
+  //Backslash, Pipe
+  TD_B_P,
+  //Tilde, Grave
+  TD_T_G
 };
 
 
@@ -108,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |  Del |
  * |------+------+------+------+`````  ---------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   =  |   (  |   )  |   $  |  |   |
+ * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   =  |   (  |   )  |   $  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   -  |  {[  |  }]  | Play | Prev/Next |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -117,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_PROGM] = {
   {KC_GRV,  TD(TD_1_E),    TD(TD_2_A),    TD(TD_3_H),    TD(TD_4_D),    TD(TD_5_P),    TD(TD_6_C),    TD(TD_7_A),    TD(TD_8_A),    TD(TD_9_L), TD(TD_0_R),    KC_DEL},
-  {_,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   TD(TD_E_P),    TD(TD_LC_LB),    TD(TD_RC_RB), KC_DLR, KC_PIPE},
+  {_,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   TD(TD_E_P),    TD(TD_LC_LB),    TD(TD_RC_RB), TD(TD_T_G), TD(TD_B_P)},
   {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TD(TD_M_U), _, _, KC_MPLY, TD(TD_N_P)},
   {_, _, _, _, KC_LSFT, _, _, TD(TD_C_P),    KC_PSCR, KC_MUTE, KC_VOLD, KC_VOLU}
 },
@@ -146,14 +150,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO /- |Pg Up |Pg Dn | MUTE |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      | TLRAIS |ALTSHIFTF| Vol+ | Play |
+ * |      |      |      |      |      |             |      | TLRAIS |ALTSHIFTF| ALTF4 | Play |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = {
   {KC_ESC,  KC_1,    KC_MS_UP,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_MS_WH_UP, KC_MPRV,   KC_MNXT,  KC_VOLU},
   {KC_DEL,  KC_MS_LEFT,   KC_MS_DOWN,   KC_MS_RIGHT,   KC_F4,   KC_MS_BTN1,   KC_MS_BTN2,   KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_RIGHT, KC_RBRC, KC_VOLD},
   {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  ACCEL0,  ACCEL1,  ACCEL2, KC_PGDN, KC_MUTE},
-  {_, _, _, _, _, _, _, _, TG(_RAISE), _, LALT(KC_F4), KC_MPLY}
+  {_, _, _, _, _, _, KC_MS_BTN1, _, _, _, LALT(KC_F4), KC_MPLY}
 },
 
 /* Adjust (Lower + Raise)
@@ -239,8 +243,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for copy, twice for paste
   [TD_C_P] = ATDD(LCTL(KC_C), LCTL(KC_V)),
   //Tap once for =, twice for +
-  [TD_E_P] = ATDD(KC_EQL, KC_PLUS)
-  
+  [TD_E_P] = ATDD(KC_EQL, KC_PLUS),
+  //Tap once for \, twice for |
+  [TD_B_P] = ATDD(KC_BSLS, KC_PIPE),
+  //Tap once for `, twice for ~
+  [TD_T_G] = ATDD(KC_TILD, KC_GRV)
   // Other declarations would go here, separated by commas, if you have them
 };
 
@@ -312,7 +319,7 @@ void startup_user()
     _delay_ms(20); // gets rid of tick
     //PLAY_NOTE_ARRAY(tone_startup, false, 0);
     //PLAY_NOTE_ARRAY(tone_ode, false, 0);    
-    PLAY_NOTE_ARRAY(tone_give_you_up, false, 0);
+    //PLAY_NOTE_ARRAY(tone_give_you_up, false, 0);
 }
 
 void shutdown_user()
