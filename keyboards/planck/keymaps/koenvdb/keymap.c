@@ -90,7 +90,6 @@ enum {
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
@@ -154,9 +153,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = {
-  {KC_ESC,  KC_1,    KC_MS_UP,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_MS_WH_UP, KC_MPRV,   KC_MNXT,  KC_VOLU},
+{KC_ESC,  _,    KC_MS_UP,    _,    _,    _,    _,    _,    KC_MS_WH_UP, KC_MPRV,   KC_MNXT,  KC_VOLU},
   {KC_DEL,  KC_MS_LEFT,   KC_MS_DOWN,   KC_MS_RIGHT,   KC_F4,   KC_MS_BTN1,   KC_MS_BTN2,   KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_RIGHT, KC_RBRC, KC_VOLD},
-  {_, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  ACCEL0,  ACCEL1,  ACCEL2, KC_PGDN, KC_MUTE},
+  {_, _,_,_,_,_,_,  ACCEL0,  ACCEL1,  ACCEL2, KC_PGDN, KC_MUTE},
   {_, _, _, _, _, _, KC_MS_BTN1, _, _, _, LALT(KC_F4), KC_MPLY}
 },
 
@@ -319,7 +318,7 @@ void startup_user()
     _delay_ms(20); // gets rid of tick
     //PLAY_NOTE_ARRAY(tone_startup, false, 0);
     //PLAY_NOTE_ARRAY(tone_ode, false, 0);    
-    //PLAY_NOTE_ARRAY(tone_give_you_up, false, 0);
+    PLAY_NOTE_ARRAY(tone_give_you_up, false, 0);
 }
 
 void shutdown_user()
